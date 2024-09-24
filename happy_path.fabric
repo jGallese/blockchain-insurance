@@ -1,0 +1,48 @@
+[
+    {
+        "description": "Inicializacion del ledger por insurance admin",
+        "invoke": "initLedger",
+        "identity": "InsuranceAdmin",
+        "args": []
+    },
+    {
+        "description": "Creacion de una poliza por un customer",
+        "invoke": "createInsurance",
+        "identity": "Customer",
+        "args": [
+            "INS-003",
+            "{\"policyNumber\": \"P-003\", \"insuredName\": \"Alice\", \"coverageAmount\": 75000, \"premiumAmount\": 750, \"startDate\": \"2023-01-01\", \"endDate\":  \"2024-01-01\"}"
+        ]
+
+    },
+    {
+        "description": "Presentacion de una reclamacion por el Customer",
+        "invoke": "fileClaim",
+        "identity" : "Customer",
+        "args": [
+            "INS-003",
+            "Alice",
+            "{\"claimNumber\": \"C-001\", \"date\": \"2023-01-01\", \"description\": \"Car accident\", \"claimAmount\": 20000}"
+        ]
+    },
+    {
+        "description": "evaluacion de la reclamacion por el insurance agent",
+        "invoke": "evaluateClaim",
+        "identity": "InsuranceAgent",
+        "args" : [
+            "INS-003",
+            "0",
+            "Approved"
+        ]
+    },
+    {
+        "description": "Pago de la claim aprobada por el insurance agent",
+        "invoke": "payClaim",
+        "identity": "InsuranceAgent",
+        "args": [
+            "INS-003",
+            "0",
+            "15000"
+        ]
+    }
+]
